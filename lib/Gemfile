@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+#ruby "1.9.3" <- removed version to facilitate upload into CloudFoundry
+gem "sinatra"
+gem "httparty"
+gem "xml-fu"
+gem "awesome_print"
+gem "gon-sinatra"
+gem "json"

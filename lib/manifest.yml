@@ -1,0 +1,4 @@
+---
+applications:
+- name: vcaexplorer
+  memory: 128M
