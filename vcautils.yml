@@ -1,3 +1,4 @@
 :username: email@domain
 :password: password
+:serviceroot: https://vca.vmware.com
 :mode: admin | developer

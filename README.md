@@ -2,7 +2,7 @@
 
 # Table of Contents
 1. [What is vcatools?](#What-is-vcatools?)
-2. [Why did you create vcautils? What's its purpose?](#Why-did-you-create-vcautils?-What's-its-purpose?)
+2. [Why did you create vcautils? What's its purpose?](#Why-did-you-create-vcautils?)
 3. [Are you maintaining vcautils? ](#Are-you-maintaining-vcautils?)
 4. [How do I install vcautils? ](#How-do-I-install-vcautils?)
 5. [How do I use vcautils? ](#How-do-I-use-vcautils?)
@@ -32,7 +32,7 @@ This is a visual representation of it:
 
 Tip: the layout will make more sense upon reading the **Technical Background** section at the end of this document.
 
-<div id='Why-did-you-create-vcautils?-What's-its-purpose?'/>
+<div id='Why-did-you-create-vcautils?'/>
 ## Why did you create vcautils? What's its purpose?  ##
 
 I have created this project primarily for the following reasons: 
@@ -67,10 +67,24 @@ You can also create the gem and install it on your own if you wish so with:
 
 A component of vcautils (i.e. vcaexplorer, which is a graphical user interface that provides a tree view of the resources in your tenant) is also available on-line at http://vcaexplorer.cfapps.io.
 
+In addition to the options above, I have just created a **Docker** image that will do it for you. The Dockerfile used to create the image is in the root of the project if you want to have a look. If you don't bother, just run this against your Docker estate:
+
+    docker run -p 80:80 -d mreferre/vcautils
+
+This, for example,  will launch the vcaexplorer GUI app and NAT it to port 80 of your container host (mind you).  
+
+You could also use this container in interactive `CLI` mode by running the following:
+
+    docker run -it  mreferre/vcautils bash
+
+The only caveat here is that you edit the `vcautils.yml` file that comes in the root directory of the application (do a `cd ..` when you attach to the container) and populate it with your own `username` and `password` parameters (optionally choose `admin` or `developer` mode of operation). See the session on how to use vcautils for more details. 
+
+Note: the base image I am currently using requires you to use the `vim.tiny` editor (`vi` won't work fine).
+
 <div id='How-do-I-use-vcautils?'/>
 ## How do I use vcautils? ##
 
-Once you have installed vcautils, the only thing you need to do is to createa a file called *vcautils.yml* with the following structure: 
+Once you have installed vcautils, the only thing you need to do is to create a file called *vcautils.yml* with the following structure: 
 
     :username: email@domain
     :password: password
@@ -131,7 +145,7 @@ The easiest way to consume **vcaexplorer** is to connect to http://vcaexplorer.c
 
 Alternatively (if you don't want to enter your credentials in an on-line service out of the blue) you can start the app on your own workstation and connect to https://localhost:4567. You can start it with the following command:
 
-    ruby vcaexplorer.rb
+    ruby vcaexplorer.rb -o 0.0.0.0
 
 The vcaexplorer output looks something like this and it represents a tree layout of the resources in your tenant: 
 
